@@ -1,1 +1,1 @@
-kocham sora Jakuba
+
