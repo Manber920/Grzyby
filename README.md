@@ -1,4 +1,3 @@
-<!DOSTYPE html>
 <html lang="pl">
 <html>   
          <head>
