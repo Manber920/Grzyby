@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Koncert - Young Igi</title>
+    <style>
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            color: yellow;
+        }
+
+        video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        h1 {
+            text-align: center;
+            color: yellow;
+            font-family: monospace;
+            font-size: 4em;
+            
+        }
+
+        form {
+            margin: 20px 0;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: none;
+            border-radius: 5px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: none;
+            border-radius: 5px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #8c00ff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: hsl(56, 100%, 35%);
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            margin: 5px 0;
+        }
+
+        .checkbox-group label {
+            display: block;
+            margin-top: 5px;
+        }
+
+        #piosenki-preview {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <video autoplay loop muted poster="igi.jpg">
+        <source src="onzm.mp4" type="video/mp4">
+    </video>
+    <div class="container" style="font-family: OCR A Std, monospace">
+        <h1>Koncert - Young Igi</h1>
+        <form action="mailto:mlynarczukmilosz@gmail.com" method="post">
+            <label for="imie">Imię i nazwisko:</label>
+            <input type="text" id="imie" name="imie" required>
+
+            <label for="email">Adres e-mail:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="telefon">Numer telefonu:</label>
+            <input type="tel" id="telefon" name="telefon" required>
+
+            <label for="ilosc_biletow">Ilość biletów:</label>
+            <input type="number" id="ilosc_biletow" name="ilosc_biletow" required>
+
+            <label for="data_koncertu">Data koncertu:</label>
+            <select id="data_koncertu" name="data_koncertu" required>
+                <option value="2023-04-20">20 kwietnia 2023</option>
+                <option value="2023-05-15">15 maja 2023</option>
+                <option value="2023-08-06">6 sierpnia 2023</option>
+                <option value="2023-09-20">20 września 2023</option>
+                <option value="2023-11-18">18 grudnia 2023</option>
+            </select>
+
+            <label for="piosenki">Piosenki do usłyszenia (wybór wielokrotny CTRL+LPM):</label>
+            <select id="piosenki" name="piosenki" multiple="multiple">
+                <option value="Serio" data-audio="serio.mp3">Serio</option>
+                <option value="Fioletowe zioło" data-audio="fioletowe ziolo.mp3">Fioletowe zioło</option>
+                <option value="Daj mi znać" data-audio="daj mi znac.mp3">Daj mi znać</option>
+                <option value="Nie potrafię" data-audio="nie potrafie.mp3">Nie potrafię</option>
+                <option value="Bestia" data-audio="bestia.mp3">Bestia</option>
+            </select>
+
+            <div id="piosenki-preview">
+                Wybrane piosenki do usłyszenia:
+            </div>
+
+            <label for="picie">Co chcesz wypić?</label>
+            <select id="picie" name="picie">
+                <option value="brak">Brak</option>
+                <option value="pizza">Wode</option>
+                <option value="burger">Piwo</option>
+                <option value="hotdog">Lean</option>
+                <option value="napoje">Koka Cole</option>
+				
+            </select>
+			
+			 </select>
+
+            <label for="jedzenie">Co chcesz zjeść?</label>
+            <select id="jedzenie" name="jedzenie">
+                <option value="brak">Brak</option>
+                <option value="pizza">Pizze</option>
+                <option value="burger">Burgera</option>
+                <option value="hotdog">Hotdoga</option>
+                <option value="napoje">Grzyba</option>
+            </select>
+
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" name="zgoda" required>
+                    Wyrażam zgodę na przetwarzanie danych osobowych.
+                </label>
+            </div>
+
+            <label for="uwagi">Dodatkowe uwagi:</label>
+            <textarea id="uwagi" name="uwagi" rows="4"></textarea>
+
+            <button type="submit">Wyślij zgłoszenie</button>
+        </form>
+    </div>
+    <script>
+        const piosenkiSelect = document.getElementById("piosenki");
+        const piosenkiPreview = document.getElementById("piosenki-preview");
+
+        piosenkiSelect.addEventListener("change", () => {
+            piosenkiPreview.innerHTML = "Odsłuch:<br>";
+
+            for (const option of piosenkiSelect.options) {
+                if (option.selected) {
+                    const piosenka = option.text;
+                    const audioSrc = option.getAttribute("data-audio");
+                    piosenkiPreview.innerHTML += piosenka + '<audio controls><source src="' + audioSrc + '" type="audio/mpeg"></audio><br>';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
