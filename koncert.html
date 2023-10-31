@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	// tytuł strony
     <title>Koncert - Young Igi</title>
     <style>
 
@@ -22,7 +23,7 @@
             object-fit: cover;
             z-index: -1;
         }
-
+// formatowanie napisu na górze strony
         h1 {
             text-align: center;
             color: yellow;
@@ -66,7 +67,7 @@
             border: none;
             border-radius: 5px;
         }
-
+// formatowanie przycisku
         button {
             background-color: #8c00ff;
             color: #fff;
@@ -79,7 +80,7 @@
         button:hover {
             background-color: hsl(56, 100%, 35%);
         }
-
+// formatowanie opcji wyrazam zgode na przetwarzanie danych
         .checkbox-group {
             display: flex;
             flex-direction: column;
@@ -97,24 +98,29 @@
     </style>
 </head>
 <body>
+	// film zapętlony jako tło
     <video autoplay loop muted poster="igi.jpg">
         <source src="onzm.mp4" type="video/mp4">
     </video>
-    <div class="container" style="font-family: OCR A Std, monospace">
-        <h1>Koncert - Young Igi</h1>
+	
+    <div class="container" style="font-family: OCR A Std, monospace"> 
+// tytuł na górze strony
+        <h1>Koncert - Young Igi</h1>       
+ // gdzie wysłać formularz
         <form action="mailto:mlynarczukmilosz@gmail.com" method="post">
+// imie i nazwisko
             <label for="imie">Imię i nazwisko:</label>
             <input type="text" id="imie" name="imie" required>
-
+// podanie emailu
             <label for="email">Adres e-mail:</label>
             <input type="email" id="email" name="email" required>
-
+// podanie numeru telefonu
             <label for="telefon">Numer telefonu:</label>
             <input type="tel" id="telefon" name="telefon" required>
 
             <label for="ilosc_biletow">Ilość biletów:</label>
             <input type="number" id="ilosc_biletow" name="ilosc_biletow" required>
-
+// wybieranie daty oncertu
             <label for="data_koncertu">Data koncertu:</label>
             <select id="data_koncertu" name="data_koncertu" required>
                 <option value="2023-04-20">20 kwietnia 2023</option>
@@ -123,7 +129,7 @@
                 <option value="2023-09-20">20 września 2023</option>
                 <option value="2023-11-18">18 grudnia 2023</option>
             </select>
-
+// wybieranie piosenek (wybór wielokrotny)
             <label for="piosenki">Piosenki do usłyszenia (wybór wielokrotny CTRL+LPM):</label>
             <select id="piosenki" name="piosenki" multiple="multiple">
                 <option value="Serio" data-audio="serio.mp3">Serio</option>
@@ -136,7 +142,7 @@
             <div id="piosenki-preview">
                 Wybrane piosenki do usłyszenia:
             </div>
-
+// pole z wyborem picia
             <label for="picie">Co chcesz wypić?</label>
             <select id="picie" name="picie">
                 <option value="brak">Brak</option>
@@ -148,7 +154,7 @@
             </select>
 			
 			 </select>
-
+// pole z wyborem jedzenia 
             <label for="jedzenie">Co chcesz zjeść?</label>
             <select id="jedzenie" name="jedzenie">
                 <option value="brak">Brak</option>
@@ -157,21 +163,22 @@
                 <option value="hotdog">Hotdoga</option>
                 <option value="napoje">Grzyba</option>
             </select>
-
+// dodanie opcji, która musi być zaznaczona aby wysłać formularz
             <div class="checkbox-group">
                 <label>
                     <input type="checkbox" name="zgoda" required>
                     Wyrażam zgodę na przetwarzanie danych osobowych.
                 </label>
             </div>
-
+// dodanie w formularzu okna z dodatkowymi uwagami
             <label for="uwagi">Dodatkowe uwagi:</label>
             <textarea id="uwagi" name="uwagi" rows="4"></textarea>
 
             <button type="submit">Wyślij zgłoszenie</button>
         </form>
     </div>
-    <script>
+   // za pomoca js dodanie podglądu piosenki po wybraniu jej z dostępnych opcji
+	<script>
         const piosenkiSelect = document.getElementById("piosenki");
         const piosenkiPreview = document.getElementById("piosenki-preview");
 
